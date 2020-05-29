@@ -4,24 +4,71 @@ close all;
 clc;
 startup_rvc;
 set(0,'DefaultFigureWindowStyle','docked')
+baseOrigin = [0, 0, 0.31];
 %% Arm Locations 
 
 %% Plot Arms and objects (Table, Safety fence, assembly parts) 
-q = zeros(1,6); %initial robot orientation
-loadObject('tableandDesktop(1).ply',[0, 0, -0.09]) %load objects in specified position
+SAWYER1 = SAWYER;
+SAWYER1.model.base = transl(baseOrigin); 
+close all
+PlotAndColourRobot(SAWYER1);
+hold on; 
+q = zeros(1,7); %initial robot orientation
+% SAWYER1.model.teach
+loadObject('tableandDesktop(1).ply',[0.5, -0.55, -0.09]) %load objects in specified position
 hold on;
-loadObject('table(arm)(1).ply',[1, 0, -0.395])
+loadObject('table(arm)(2).ply',[0, 0.35, -0.395])
 hold on;
-loadObject('PCtower(1).ply',[-1, 0.2, 0.175])
+loadObject('PCtower(2).ply',[-0.75, -0.5, 0.175])
 hold on;
-loadObject('HDMI(female)(1).ply',[-0.55, 0.1, 0])
+loadObject('mouse(2).ply',[0.65, -0.25, 0])
 hold on;
-loadObject('HDMI(1).ply',[-0.7, 0.2, 0])
+loadObject('coffeeMug1.ply',[0.65, -0.5, 0.05])
 hold on;
-loadObject('EmergencyLight.ply',[1.5, 0, 0.43])
+loadObject('USBCMale.ply',[0, 1, 0.41])
 hold on;
-loadObject('emergencyStop.ply',[1.5, 0.2, 0.35])
+% loadObject('HDMI(female)(1).ply',[-0.55, 0.1, 0])
+% hold on;
+% loadObject('HDMI(1).ply',[-0.7, 0.2, 0])
+% hold on;
+loadObject('keyboard3.ply',[0, -0.35, 0.05])
 hold on;
+loadObject('EmergencyLight.ply',[0.25, 1, 0.31])
+hold on;
+loadObject('emergencyStop.ply',[-0.2, 1, 0.31])
+hold on;
+loadObject('safetyFence1.ply',[1.5, -1.25, -0.4])
+hold on;
+loadObject('safetyFence3.ply',[1.5, 1.75, -0.4])
+hold on;
+% loadObject('safetyFence1.ply',[0.5, -1.25, -0.4])
+% hold on;
+% loadObject('safetyFence3.ply',[0.5, 1.75, -0.4])
+% hold on;
+loadObject('safetyFence90d1.ply',[2.5, -0.5, -0.4])
+hold on;
+loadObject('safetyFence90d2.ply',[2.5, 1, -0.4])
+hold on;
+% loadObject('safetyFence90d1.ply',[1.5, -0.5, -0.4])
+% hold on;
+% loadObject('safetyFence90d2.ply',[1.5, 1, -0.4])
+% hold on;
+loadObject('safetyFence90d3.ply',[-1.75, -0.5, -0.4])
+hold on;
+loadObject('safetyFence90d4.ply',[-1.75, 1, -0.4])
+hold on;
+loadObject('safetyFence2.ply',[-1, -1.25, -0.4])
+hold on;
+loadObject('safetyFence4.ply',[-1, 1.75, -0.4])
+hold on;
+% loadObject('safetyFence90d3.ply',[-2.25, -0.5, -0.4])
+% hold on;
+% loadObject('safetyFence90d4.ply',[-2.25, 1, -0.4])
+% hold on;
+% loadObject('safetyFence2.ply',[-1.5, -1.25, -0.4])
+% hold on;
+% loadObject('safetyFence4.ply',[-1.5, 1.75, -0.4])
+% hold on;
 input('Prepare viewpoints for movements');
 %% Task 3 Robot movement
 
