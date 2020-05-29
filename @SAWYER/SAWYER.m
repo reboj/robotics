@@ -39,20 +39,28 @@ classdef SAWYER < handle
         % Given a name (optional), create and return a SAWYER robot model
         function GetSAWYERRobot(self)
             pause(0.001);
-            name = ['UR_3_',datestr(now,'yyyymmddTHHMMSSFFF')];
+            name = ['SAWYER',datestr(now,'yyyymmddTHHMMSSFFF')];
 
             
            
-             L1 = Link('d',0.317,'a',0.081,'alpha',pi/2,'qlim',[-2*pi,2*pi], 'offset', 0);
-             L2 = Link('d',-0.1925,'a',0,'alpha',-pi/2,'qlim', [-2*pi,2*pi], 'offset',0);
-             L3 = Link('d',-0.4,'a',0,'alpha',-pi/2,'qlim', [-2*pi,2*pi], 'offset', 0);
-             L4 = Link('d',-0.1685,'a',0,'alpha',pi/2,'qlim',[-2*pi,2*pi],'offset', 0); 
-             L5 = Link('d',0.4,'a',0,'alpha',-pi/2,'qlim',[-2*pi,2*pi], 'offset',0);
+           
+             
+%              L1 = Link('d',0.317,'a',0.081,'alpha',pi/2,'qlim',[-2*pi,2*pi], 'offset', 0);
+%              L2 = Link('d',-0.1925,'a',0,'alpha',-pi/2,'qlim', [-2*pi,2*pi], 'offset', 270);
+%              L3 = Link('d',-0.4,'a',0,'alpha',-pi/2,'qlim', [-2*pi,2*pi], 'offset', 0);
+%              L4 = Link('d',-0.1685,'a',0,'alpha',pi/2,'qlim',[-2*pi,2*pi],'offset', 180); 
+%              L5 = Link('d',0.4,'a',0,'alpha',-pi/2,'qlim',[-2*pi,2*pi], 'offset', 0);
+%              L6 = Link('d',0.1363,'a',0,'alpha',pi/2,'qlim',[-2*pi,2*pi], 'offset', 180);
+%              L7 = Link('d',0.13375,'a',0,'alpha',0,'qlim',[-2*pi,2*pi], 'offset', 270);
+
+%             
+               L1 = Link('d',0.317,'a',0.081,'alpha',pi/2,'qlim',[-2*pi,2*pi], 'offset', 90);
+             L2 = Link('d',-0.1925,'a',0,'alpha',-pi/2,'qlim', [-2*pi,2*pi], 'offset', 90);
+             L3 = Link('d',-0.4,'a',0,'alpha',-pi/2,'qlim', [-2*pi,2*pi], 'offset', 90);
+             L4 = Link('d',-0.1685,'a',0,'alpha',pi/2,'qlim',[-2*pi,2*pi],'offset', 180); 
+             L5 = Link('d',0.4,'a',0,'alpha',-pi/2,'qlim',[-2*pi,2*pi], 'offset', 90);
              L6 = Link('d',0.1363,'a',0,'alpha',pi/2,'qlim',[-2*pi,2*pi], 'offset', 0);
              L7 = Link('d',0.13375,'a',0,'alpha',0,'qlim',[-2*pi,2*pi], 'offset', 0);
-
-            
-             
           
              
      
