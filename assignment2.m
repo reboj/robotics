@@ -10,7 +10,7 @@ baseOrigin = [0, 0, 0.31];
 %% Plot Arms and objects (Table, Safety fence, assembly parts) 
 SAWYER1 = SAWYER;
 SAWYER1.model.base = transl(baseOrigin); 
-close all
+%close all
 PlotAndColourRobot(SAWYER1);
 hold on; 
 q = zeros(1,7); %initial robot orientation
@@ -25,12 +25,12 @@ loadObject('mouse(2).ply',[0.65, -0.25, 0])
 hold on;
 loadObject('coffeeMug1.ply',[0.65, -0.5, 0.05])
 hold on;
-loadObject('USBCMale.ply',[0, 1, 0.41])
+%loadObject('USBCMale.ply',[0, 1, 0.41])
+%hold on;
+loadObject('HDMI(female)(2).ply',[-0.6, -0.3, 0.38])
 hold on;
-% loadObject('HDMI(female)(1).ply',[-0.55, 0.1, 0])
-% hold on;
-% loadObject('HDMI(1).ply',[-0.7, 0.2, 0])
-% hold on;
+loadObject('HDMIMale(green).ply',[0, 0.5, 0.41])
+hold on;
 loadObject('keyboard3.ply',[0, -0.35, 0.05])
 hold on;
 loadObject('EmergencyLight.ply',[0.25, 1, 0.31])
@@ -61,6 +61,7 @@ loadObject('safetyFence2.ply',[-1, -1.25, -0.4])
 hold on;
 loadObject('safetyFence4.ply',[-1, 1.75, -0.4])
 hold on;
+SAWYER1.model.teach;
 % loadObject('safetyFence90d3.ply',[-2.25, -0.5, -0.4])
 % hold on;
 % loadObject('safetyFence90d4.ply',[-2.25, 1, -0.4])
@@ -69,8 +70,41 @@ hold on;
 % hold on;
 % loadObject('safetyFence4.ply',[-1.5, 1.75, -0.4])
 % hold on;
-input('Prepare viewpoints for movements');
+%input('Prepare viewpoints for movements');
 %% Task 3 Robot movement
+% test = SAWYER;
+% close all;
+% test.model.base = transl([0,0,0]);
+% PlotAndColourRobot(test);
+% % hold on
+% 
+% pos1 = [0.5,0.6,0.8];
+% pos2 = [0.9,0.7,0.6];
+% point1 = transl(pos1);
+% point2 = transl(pos2);
+% % q= zeros(1,7);
+% q= zeros(1,7);
+% steps = 100;
+% % qPtop = sawyer.model.ikcon(point1);  
+% % qBot = sawyer.model.ikcon (point2);
+% % qB2top = jtraj(q,qPtop,steps);
+% % qB2bot = jtraj(q,qBot,steps);
+% 
+% q1 = test.model.ikcon(point1); 
+% q2 = test.model.ikcon (point2);
+% % qMatrix = jtraj(q1,q2,steps);
+% s = lspb(0,1,steps);                                             	% First, create the scalar function
+%         qMatrix = nan(steps,7);                                             % Create memory allocation for variables
+%             for i = 1:steps
+%                 qMatrix(i,:) = (1-s(i))*q1 + s(i)*q2;    
+%             end
+% 
+% % sawyer.model.plot(qB2top);  
+% % sawyer.model.plot(qB2bot);
+% input('Select point view');
+% figure(1)
+% test.model.plot3d(q1,'trail','r-');  
+% test.model.plot3d(q2,'trail','r-');
 
 
 %% Given an end effector pose, determine a joint state
