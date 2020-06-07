@@ -1,174 +1,123 @@
-function ass = assignment2(inputTop, inputBottom, inputPCB, leftOrigin, rightOrigin, AssemblyPos)
-%% Input position
+function assignment2()
 close all;
 clc;
-startup_rvc;
+startup_rvc
 set(0,'DefaultFigureWindowStyle','docked')
-baseOrigin = [0, 0, 1.06];
-%% Arm Locations 
-
-%% Plot Arms and objects (Table, Safety fence, assembly parts) 
-SAWYER1 = SAWYER;
-SAWYER1.model.base = transl(baseOrigin); 
-%close all
-PlotAndColourRobot(SAWYER1);
+%% SAWYER INTIALIZATION AND PLOT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+sawyer = SAWYER;
+baseOrigin = [-1.875, -0.6, 1.06];
+sawyer.model.base = transl(baseOrigin); 
 hold on; 
-q = zeros(1,7); %initial robot orientation
-% SAWYER1.model.teach
-loadObject('tableandDesktop(1).ply',[0.5, -0.55, 0.66]) %load objects in specified position
+
+%% PLOT ENVIRONMENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% COORDINATES
+f_hdmi1 = [-0.95, -0.4, 1.115]; 
+f_h1E   = [-1, -0.4, 1.115];
+f_hdmi2 = [-0.95, -0.5, 1.115];
+f_h2E   = [-1, -0.5, 1.115];
+m_hdmi  = [-1.875, 0.05, 1.16];
+loadObject('HDMI(female)(1).ply',f_hdmi1)
 hold on;
-loadObject('table(arm)(2).ply',[0, 0.35, 0.355])
+loadObject('HDMI(female)(2).ply',f_hdmi2)
+hold on;
+loadObject('HDMIMale(green).ply',m_hdmi)
+hold on;
+loadObject('tableandDesktop(1).ply',[0.5, -0.55, 0.66]) 
+hold on;
+loadObject('table(arm)(2).ply',[-1.875, -0.4, 0.355])
 hold on;
 loadObject('PCtower(2).ply',[-0.75, -0.5, 0.925])
 hold on;
-loadObject('mouse(2).ply',[0.65, -0.25, 0.75])
-hold on;
-loadObject('coffeeMug1.ply',[0.65, -0.5, 0.8])
-hold on;
-%loadObject('USBCMale.ply',[0, 1, 0.41])
-%hold on;
-loadObject('HDMI(female)(2).ply',[-0.6, -0.3, 1.13])
-hold on;
-loadObject('HDMIMale(green).ply',[0, 0.5, 1.16])
-hold on;
-loadObject('keyboard3.ply',[0, -0.35, 0.8])
-hold on;
-loadObject('EmergencyLight.ply',[0.25, 1, 1.06])
-hold on;
-loadObject('emergencyStop.ply',[-0.2, 1, 1.06])
-hold on;
-loadObject('safetyFence1.ply',[1.5, -1.25, 0.35])
-hold on;
-loadObject('safetyFence3.ply',[1.5, 1.75, 0.35])
-hold on;
-% loadObject('safetyFence1.ply',[0.5, -1.25, -0.4])
+%%%DECORATION%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% loadObject('keyboard3.ply',[0, -0.35, 0.8])
 % hold on;
-% loadObject('safetyFence3.ply',[0.5, 1.75, -0.4])
+% loadObject('EmergencyLight.ply',[0.25, 1, 1.06])
 % hold on;
-loadObject('safetyFence90d1.ply',[2.5, -0.5, 0.35])
-hold on;
-loadObject('safetyFence90d2.ply',[2.5, 1, 0.35])
-hold on;
-% loadObject('safetyFence90d1.ply',[1.5, -0.5, -0.4])
+% loadObject('emergencyStop.ply',[-0.2, 1, 1.06])
 % hold on;
-% loadObject('safetyFence90d2.ply',[1.5, 1, -0.4])
+% loadObject('safetyFence1.ply',[1.5, -1.25, 0.35])
 % hold on;
-loadObject('safetyFence90d3.ply',[-1.75, -0.5, 0.35])
-hold on;
-loadObject('safetyFence90d4.ply',[-1.75, 1, 0.35])
-hold on;
-loadObject('safetyFence2.ply',[-1, -1.25, 0.35])
-hold on;
-loadObject('safetyFence4.ply',[-1, 1.75, 0.35])
-hold on;
-SAWYER1.model.teach;
-% loadObject('safetyFence90d3.ply',[-2.25, -0.5, -0.4])
+% loadObject('safetyFence3.ply',[1.5, 1.75, 0.35])
 % hold on;
-% loadObject('safetyFence90d4.ply',[-2.25, 1, -0.4])
+% loadObject('safetyFence90d1.ply',[2.5, -0.5, 0.35])
 % hold on;
-% loadObject('safetyFence2.ply',[-1.5, -1.25, -0.4])
+% loadObject('safetyFence90d2.ply',[2.5, 1, 0.35])
 % hold on;
-% loadObject('safetyFence4.ply',[-1.5, 1.75, -0.4])
+% loadObject('safetyFence90d3.ply',[-1.75, -0.5, 0.35])
 % hold on;
-%input('Prepare viewpoints for movements');
-%% Task 3 Robot movement
-% SAWYER1 = SAWYER;
-% close all;
-% SAWYER1.model.base = transl([0,0,0]);
-% PlotAndColourRobot(SAWYER1); % class function
-% % hold on
+% loadObject('safetyFence90d4.ply',[-1.75, 1, 0.35])
+% hold on;
+% loadObject('safetyFence2.ply',[-1, -1.25, 0.35])
+% hold on;
+% loadObject('safetyFence4.ply',[-1, 1.75, 0.35])
+% hold on;
+% loadObject('mouse(2).ply',[0.65, -0.25, 0.75])
+% hold on;
+% loadObject('coffeeMug1.ply',[0.75, -0.5, 0.8])
+% hold on;
 
-pos1 = [0, 0.5, 1.16];
-pos2 = [-0.6, -0.3, 1.13];
-point1 = transl(pos1);
-point2 = transl(pos2);
-% q= zeros(1,7);
-%q= zeros(1,7);
-steps = 50;
-qlim = SAWYER1.model.qlim;
-% qPtop = sawyer.model.ikcon(point1);  
-% qBot = sawyer.model.ikcon (point2);
-% qB2top = jtraj(q,qPtop,steps);
-% qB2bot = jtraj(q,qBot,steps);
+%% Robotic Movement using RMRC  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Time Intervals
+t = 5;                                                                      % Total time (s)
+deltaT = 0.1;                                                               % Control frequency
+steps = t/deltaT;                                                           % No. of steps for simulation
 
-q1 = SAWYER1.model.ikcon(point1); 
-q2 = SAWYER1.model.ikcon (point2);
-qMatrix_0 = jtraj(q,q1,steps);
-qMatrix_1 = jtraj(q1,q2,steps);
-s = lspb(0,1,steps);                                             	% First, create the scalar function
-        qMatrix_1 = nan(steps,7);                                             % Create memory allocation for variables
-            for i = 1:steps
-                qMatrix_0(i,:) = (1-s(i))*q + s(i)*q1;    
-                qMatrix_1(i,:) = (1-s(i))*q1 + s(i)*q2;  
-                  
-            end
-            
-velocity = zeros(steps,7);
-acceleration  = zeros(steps,7);
-for i = 2:steps
-    velocity_0(i,:) = qMatrix_0(i,:) - qMatrix_0(i-1,:);
-    velocity_1(i,:) = qMatrix_1(i,:) - qMatrix_1(i-1,:); 
-    acceleration_0(i,:) = velocity_0(i,:) - velocity_0(i-1,:);
-    acceleration_1(i,:) = velocity_1(i,:) - velocity_1(i-1,:); 
-end
-figure(1)
-SAWYER1.model.plot3d(qMatrix_0);             
-SAWYER1.model.plot3d(qMatrix_1); 
-figure(2)
-for i = 1:7
-    subplot(4,2,i)
-    plot(velocity_0(:,i),'k','LineWidth',1)
-%     plot(velocity_1(:,i),'k','LineWidth',5)
-    title(['Joint ', num2str(i)])
-    xlabel('Step')
-    ylabel('Joint Velocity')
+%Initialization of q joints. 
+q_intial = zeros(1,7);
+p_start  = transl(m_hdmi);
+q_start  = sawyer.model.ikcon(p_start); % this is the joint coordinates of he end effecto  at the begin
+p_end    = transl(f_hdmi1)*troty(pi/2); % adding troty(pi/2) to make the end-effector rotate around y axis 90 deg to face the direction of the port
+q_end    = sawyer.model.ikcon(p_end);
+
+%% Quintic-polynomial Trajectory. 
+% q_matrix = jtraj(q_start,q_end,steps);
+% for i = 1:steps
+% sawyer.model.animate(q_matrix(i,:));
+% drawnow();
+% end
+
+%Generate Trajectory from q_start to q_end using Trapizoidal Velocity.
+s = lspb(0,1,steps);
+q_matrix = zeros(steps,7);
+for i = 1:steps
+    q_matrix(i,:) = (1-s(i))*q_start + s(i)*q_end;                          %Generate trajectory from q_start to q_end.
+    sawyer.model.animate(q_matrix(i,:));
+    drawnow();
 end
 
-figure(3)
-for i = 1:7
-    subplot(4,2,i)
-    plot(acceleration_0(:,i),'k','LineWidth',1)
-%     plot(acceleration_1(:,i),'k','LineWidth',5)
-    title(['Joint ', num2str(i)])
-    xlabel('Step')
-    ylabel('Joint Acceleration')
+
+%RMRC from entry point to insert point. 
+%Initialise
+position = sawyer.model.fkine(q_matrix(end,:)); % Final pose of trajectory.
+for i = 1:steps
+    q_current = sawyer.model.ikcon(position);
+    jacobian  = sawyer.model.jacob0(q_current);
+    desired_V = [0.1 0.1  0  0  0  0]'; %[x y z r p y] -- velocity
+    q_dot     = pinv(jacobian) * desired_V;
+    q_k   = q_current + (q_dot*deltaT);
+    sawyer.model.animate(q_k);
+    drawnow(); 
+    position = sawyer.model.fkine(q_current);
 end
-% sawyer.model.plot(qB2top);  
-% sawyer.model.plot(qB2bot);
-% input('Select point view');
-% figure(1)
-% SAWYER1.model.plot3d(qMatrix); 
-% SAWYER1.model.plot3d(q1,'delay',100);  
-% SAWYER1.model.plot3d(q2,'delay',100);
-% SAWYER1.model.plot(qMatrix,'trail','r-')    
-
-%% Given an end effector pose, determine a joint state
-%clear all;
-%clc;  
-%establish object
-%rightUR3 = UR3;
-%rightUR3.model.teach
-%adjust the position to the appropriate model, or if there is a given matrix
-%q = rightUR3.model.getpos();
-
-%The end effector pose is defined as a 4x4 homogeneous transform
-% to go further - feed the getpos value into fkine
-%JointState = rightUR3.model.ikine(q);
-%hold on;
-%input('Continue: move robot to required joint');
-%% Move robot to required joint states and demonstrate that the joint states satisfy the given pose
-% clear all;
-% clc;
-% leftUR3 = UR3;
-% % q = [6x1] matrix
-% animate(leftUR3.model,[pi/2,-pi/2,pi/2,pi/2,pi/2,pi/2]); % This is quick method to see the robot position itsef
 % 
-% %Move the robot required joint states and demonstrate that the joint states
-% %satisfy the given pose.
-% %Step1: feed the given joint states into either animate or jtrai. 
-% %Step2: Run robot teach leftUR3.model.teach
-% %Step3: Run getpos() leftUR3.model.getpos()
-% 
-% %Extra initial step (x,y,z), ikcon is best used
-% q = leftUR3.model.ikcon(transl(1,1,1));
+% current_joint_states =sawyer.model.getpos();
+% q_plugging = sawyer.model.ikcon(current_joint_states);
+% sawyer.model.jacob0(q_pluggging);
+% for i = 1:steps
+%     q_matrix_01(i,:) = (1-s(i))*q_end + s(i)*q_plugging;                          %Generate trajectory from q_start to q_end.
+%     sawyer.model.animate(q_matrix(i,:));
+%     drawnow();
+% end
 
+%% Safety --- RMRC                                                         
+%If simulated safety symbol detected, go to "retreat state".
+%Make your own trajectory. Then move. 
+
+
+%% Visual Servoing
+
+
+
+
+  
+end
