@@ -1,0 +1,31 @@
+
+Translation using Trapizoidal Velocity.
+* Working but the final pose is questionable. 
+* DH parameter needs working.
+---> for some reason the offset applied disappeard.
+
+
+RMRC
+
+* test and integrate code into the main file. 
+* Program for safety. 
+* Later --> Create usable functions for RMRC. 
+1.) Test --> translation/ trajectory from point A to B works. 
+	Test --> RMRC code into assignment by 
+
+Visual Servoing
+* Apply Visual Servoing into the assignment. 
+
+Grab the part. 
+
+
+
+L1 = Link('d',0.317,'a',0.081,'alpha',pi/2,'qlim',[-2*pi,2*pi], 'offset', 200 + (0 *(pi/180)));
+L2 = Link('d',-0.1925,'a',0,'alpha',-pi/2,'qlim', [-2*pi,2*pi], 'offset', 0 + (180 *(pi/180)));
+L3 = Link('d',-0.4,'a',0,'alpha',-pi/2,'qlim', [-2*pi,2*pi], 'offset', 110 + (180 *(pi/180)));
+L4 = Link('d',-0.1685,'a',0,'alpha',pi/2,'qlim',[-2*pi,2*pi],'offset', 110 + (0 *(pi/180))); 
+L5 = Link('d',0.4,'a',0,'alpha',-pi/2,'qlim',[-2*pi,2*pi], 'offset', 110 + (180 *(pi/180)));
+L6 = Link('d',0.1363,'a',0,'alpha',pi/2,'qlim',[-2*pi,2*pi], 'offset', 110 + (180 *(pi/180)));
+L7 = Link('d',0.23505,'a',0,'alpha',0,'qlim',[-2*pi,2*pi], 'offset', 110 + (0 *(pi/180)));
+
+1,4,7
