@@ -1,0 +1,39 @@
+
+Hey Marvin,
+
+* I was able to "grab" without ghosting. 
+-> If you do play the code, you'll see one left behind, that is just another object of the class. 
+   So its not the same cable.
+
+*I have programmed Eject and Insert.
+-> I did this through flags. Both should work accordingly.
+-> NOTE: Please adjust RMRC movement for "inserting" the cable as it overshoots. 
+  ALSO, Please adjust the cable to that is facing the port
+	accordingly. 
+
+-> Collision works with Rectangular Prism Class.
+-> Retreat works but is yet to be integrated. It only needs to be mentioned in movement.m at every movement. Retreat Movement is already sorted. 
+-> NOTE: I have not included yet your sensor input code.
+
+
+HOW I SET UP THE CODE:
+1.) You may find classes of 'environment' and 'cable'. This is so the script is shorter. 
+2.) FOR movement.m 
+-> There are flags there to set up a certain configuration or movement. For GUI what you could do is, when a 
+press bottomn is pressed. It is trigger a flag. However, the movement.m will still run even there is not bottomn pressed.
+It will just go to the diffult setup. 
+
+WHATS there to do, besides GUI
+1.) RETREAT and ESTOP/SENSOR INPUT still needs to be integrated. A condition still needs to be set that if any
+collision/Estop/sensor input happens then SAWYER will RETREAT and break out of the movement.m file. 
+
+OTHER FILES NOT INCLUDED IN THE UPLOAD GITHUB ARE:
+* The ply files.
+* rvctools.
+ALSO: I HAVENT ADJUSTED THE COORD OF THE "NEW" ENVIRONMENT.
+
+BESIDES ALL THESE, YOU SHOULD BE ABLE TO RUN MY CODE WHEN YOU DOWNLOAD THE FILES.
+
+Rebo
+
+
